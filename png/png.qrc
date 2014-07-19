@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/SystemTrayIcon">
+        <file>QL.png</file>
+    </qresource>
+</RCC>
