@@ -19,7 +19,19 @@ SettingWindow::SettingWindow(QWidget *parent) :
     this->stIcon->setContextMenu(this->mainMenu);
     bool b=this->stIcon->isSystemTrayAvailable();
     qDebug()<<b;
+    this->setFocus();
     this->stIcon->show();
+    this->show();
+    this->setVisible(false);
+    QStandardItem *item=new QStandardItem(QIcon(":/SystemTrayIcon/QL.png"),"test");
+    QStandardItem *item1=new QStandardItem(QIcon(":/SystemTrayIcon/QL.png"),"test");
+    listModel=new QStandardItemModel;
+    listModel->appendRow(item);
+    listModel->appendRow(item1);
+    ui->listView->setFixedSize(400,300);
+    ui->listView->setGridSize(QSize(200,20));
+    ui->listView->setModel(listModel);
+
 }
 
 SettingWindow::~SettingWindow()
@@ -35,5 +47,15 @@ void SettingWindow::quit()
 
 void SettingWindow::setting()
 {
-    this->show();
+    this->setVisible(true);
+}
+
+void SettingWindow::keyReleaseEvent(QKeyEvent *k)
+{
+    if(k->key()==Qt::Key_Super_L)
+        qDebug()<<"pressed";
+    else
+        qDebug()<<"err";
+    if(k->key()==Qt::Key_0)
+        qDebug()<<"0";
 }
