@@ -1,6 +1,7 @@
 #include "settingwindow.h"
 #include "ui_settingwindow.h"
 #include<QDebug>
+#include<stdlib.h>
 SettingWindow::SettingWindow(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::SettingWindow)
@@ -21,10 +22,8 @@ SettingWindow::SettingWindow(QWidget *parent) :
     qDebug()<<b;
     this->setFocus();
     this->stIcon->show();
-    this->show();
-    this->setVisible(false);
     QStandardItem *item=new QStandardItem(QIcon(":/SystemTrayIcon/QL.png"),"test");
-    QStandardItem *item1=new QStandardItem(QIcon(":/SystemTrayIcon/QL.png"),"test");
+    QStandardItem *item1=new QStandardItem(QIcon("/home/ganger/project/linux_quick_launch_tool/png/go.png"),"test");
     listModel=new QStandardItemModel;
     listModel->appendRow(item);
     listModel->appendRow(item1);
@@ -47,15 +46,20 @@ void SettingWindow::quit()
 
 void SettingWindow::setting()
 {
-    this->setVisible(true);
+    system("touch conf");
+    ifstream confFileIn;
+    confFileIn.open("conf",ios::in);
+    string s;
+    confFileIn>>s;
+    qDebug()<<QString::fromLocal8Bit(s.c_str());
+    confFileIn.close();
+
+    this->show();
 }
 
-void SettingWindow::keyReleaseEvent(QKeyEvent *k)
+
+void SettingWindow::on_addButton_clicked()
 {
-    if(k->key()==Qt::Key_Super_L)
-        qDebug()<<"pressed";
-    else
-        qDebug()<<"err";
-    if(k->key()==Qt::Key_0)
-        qDebug()<<"0";
+
+
 }

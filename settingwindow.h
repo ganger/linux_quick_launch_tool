@@ -11,6 +11,8 @@
 #include<QStandardItem>
 #include<QStandardItemModel>
 #include<QSize>
+#include<fstream>
+using namespace std;
 namespace Ui {
 class SettingWindow;
 }
@@ -31,7 +33,8 @@ private:
 public slots:
     void quit();
     void setting();
-    void keyReleaseEvent(QKeyEvent *k);
+private slots:
+    void on_addButton_clicked();
 };
 
 #endif // SETTINGWINDOW_H
