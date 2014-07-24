@@ -20,16 +20,13 @@ SettingWindow::SettingWindow(QWidget *parent) :
     this->stIcon->setContextMenu(this->mainMenu);
     bool b=this->stIcon->isSystemTrayAvailable();
     qDebug()<<b;
-    this->setFocus();
     this->stIcon->show();
-    QStandardItem *item=new QStandardItem(QIcon(":/SystemTrayIcon/QL.png"),"test");
-    QStandardItem *item1=new QStandardItem(QIcon("/home/ganger/project/linux_quick_launch_tool/png/go.png"),"test");
-    listModel=new QStandardItemModel;
-    listModel->appendRow(item);
-    listModel->appendRow(item1);
-    ui->listView->setFixedSize(400,300);
-    ui->listView->setGridSize(QSize(200,20));
-    ui->listView->setModel(listModel);
+    this->fresh();
+    QModelIndex *index=new QModelIndex;
+
+    //this->connect(ui->listView,SIGNAL(doubleClicked(index)),this,SLOT(edit(index)));
+
+
 
 }
 
@@ -60,6 +57,67 @@ void SettingWindow::setting()
 
 void SettingWindow::on_addButton_clicked()
 {
+    AddWindow *adw=new AddWindow;
+    adw->show();
+    this->connect(adw,SIGNAL(w_close()),this,SLOT(fresh()));
 
+}
 
+void SettingWindow::fresh()
+{
+    ifstream confFile;
+    confFile.open("conf",ios::in);
+    listModel=new QStandardItemModel;
+    while(!confFile.eof())
+    {
+        string tmpstr;
+        struct_items *item=new struct_items;
+        confFile>>tmpstr;
+        if("###"==tmpstr)
+        {
+            confFile>>tmpstr;
+            confFile>>item->name;
+            confFile>>tmpstr;
+            confFile>>item->command;
+            confFile>>tmpstr;
+            confFile>>item->path;
+        }
+       QStandardItem *itemview=new QStandardItem(QIcon(\
+         QString::fromLocal8Bit(item->path.c_str())),QString::fromLocal8Bit(item->name.c_str()));
+       itemview->setEditable(false);
+       listModel->appendRow(itemview);
+       free(item);
+       ui->listView->setModel(listModel);
+    }
+}
+
+void SettingWindow::on_okButton_clicked()
+{
+    this->close();
+}
+
+void SettingWindow::edit(QModelIndex index)
+{
+    ifstream confFile;
+    confFile.open("conf",ios::in);
+   // listModel=new QStandardItemModel;
+    QList<struct_items> itemlist;
+    while(!confFile.eof())
+    {
+        string tmpstr;
+        struct_items *item=new struct_items;
+        confFile>>tmpstr;
+        if("###"==tmpstr)
+        {
+            confFile>>tmpstr;
+            confFile>>item->name;
+            confFile>>tmpstr;
+            confFile>>item->command;
+            confFile>>tmpstr;
+            confFile>>item->path;
+        }
+        itemlist.append(*item);
+    }
+    AddWindow aw;
+    aw.set_name(itemlist.at(index.row()).name);
 }

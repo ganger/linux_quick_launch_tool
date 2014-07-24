@@ -12,6 +12,9 @@
 #include<QStandardItemModel>
 #include<QSize>
 #include<fstream>
+#include"addwindow.h"
+#include"structs.h"
+#include<QList>
 using namespace std;
 namespace Ui {
 class SettingWindow;
@@ -24,6 +27,7 @@ class SettingWindow : public QWidget
 public:
     explicit SettingWindow(QWidget *parent = 0);
     ~SettingWindow();
+
     
 private:
     Ui::SettingWindow *ui;
@@ -33,8 +37,11 @@ private:
 public slots:
     void quit();
     void setting();
+    void fresh();
 private slots:
     void on_addButton_clicked();
+    void on_okButton_clicked();
+    void edit(QModelIndex index);
 };
 
 #endif // SETTINGWINDOW_H

@@ -43,26 +43,13 @@
    <property name="geometry">
     <rect>
      <x>490</x>
-     <y>120</y>
+     <y>150</y>
      <width>81</width>
      <height>22</height>
     </rect>
    </property>
    <property name="text">
     <string>ok</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="cancleButton">
-   <property name="geometry">
-    <rect>
-     <x>490</x>
-     <y>160</y>
-     <width>81</width>
-     <height>22</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>cancle</string>
    </property>
   </widget>
   <widget class="QListView" name="listView">

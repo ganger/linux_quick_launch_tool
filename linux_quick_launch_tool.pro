@@ -18,7 +18,8 @@ SOURCES += main.cpp\
 
 HEADERS  += \
     settingwindow.h \
-    addwindow.h
+    addwindow.h \
+    structs.h
 
 FORMS    += \
     settingwindow.ui \

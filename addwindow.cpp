@@ -41,7 +41,9 @@ void AddWindow::on_okButton_clicked()
         confFile<<"[command]  "<<ui->commandText->text().toStdString()<<endl;
         confFile<<"[icon_path]    "<<ui->iconText->text().toStdString()<<endl;
         confFile.close();
+        emit w_close();
         this->close();
+
     }
 
 }
@@ -49,4 +51,15 @@ void AddWindow::on_okButton_clicked()
 void AddWindow::on_cancleButton_clicked()
 {
     this->close();
+}
+
+void AddWindow::set_name(string name)
+{
+    ui->nameText->setText(QString::fromLocal8Bit(name.c_str()));
+}
+
+void AddWindow::set_path(string path)
+{
+
+    ui->iconText->setText(QString::fromLocal8Bit(path.c_str()));
 }
