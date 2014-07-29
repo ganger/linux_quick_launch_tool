@@ -7,7 +7,7 @@ SettingWindow::SettingWindow(QWidget *parent) :
     ui(new Ui::SettingWindow)
 {
     ui->setupUi(this);
-    this->stIcon=new QSystemTrayIcon;
+   this->stIcon=new QSystemTrayIcon;
     this->stIcon->setIcon(QIcon(":/SystemTrayIcon/QL.png"));
     this->stIcon->setToolTip("Linux Quick Lauch Tool");
     this->mainMenu=new QMenu((QWidget*)QApplication::desktop());
@@ -22,11 +22,11 @@ SettingWindow::SettingWindow(QWidget *parent) :
     qDebug()<<b;
     this->stIcon->show();
     this->fresh();
-    QModelIndex *index=new QModelIndex;
+    QxtGlobalShortcut * sc = new QxtGlobalShortcut(QKeySequence("Ctrl+Alt+S"), this);
+    connect(sc, SIGNAL(activated()),this, SLOT(toggle()));
 
-    //this->connect(ui->listView,SIGNAL(doubleClicked(index)),this,SLOT(edit(index)));
 
-
+  //  */
 
 }
 
@@ -43,7 +43,7 @@ void SettingWindow::quit()
 
 void SettingWindow::setting()
 {
-    system("touch conf");
+
     ifstream confFileIn;
     confFileIn.open("conf",ios::in);
     string s;
@@ -65,6 +65,7 @@ void SettingWindow::on_addButton_clicked()
 
 void SettingWindow::fresh()
 {
+    system("touch conf");
     ifstream confFile;
     confFile.open("conf",ios::in);
     listModel=new QStandardItemModel;
@@ -82,12 +83,15 @@ void SettingWindow::fresh()
             confFile>>tmpstr;
             confFile>>item->path;
         }
-       QStandardItem *itemview=new QStandardItem(QIcon(\
-         QString::fromLocal8Bit(item->path.c_str())),QString::fromLocal8Bit(item->name.c_str()));
-       itemview->setEditable(false);
-       listModel->appendRow(itemview);
-       free(item);
-       ui->listView->setModel(listModel);
+        if(item->path!="")
+        {
+            QStandardItem *itemview=new QStandardItem(QIcon(\
+            QString::fromLocal8Bit(item->path.c_str())),QString::fromLocal8Bit(item->name.c_str()));
+            itemview->setEditable(false);
+            listModel->appendRow(itemview);
+            free(item);
+            ui->listView->setModel(listModel);
+        }
     }
 }
 
@@ -120,4 +124,16 @@ void SettingWindow::edit(QModelIndex index)
     }
     AddWindow aw;
     aw.set_name(itemlist.at(index.row()).name);
+}
+
+void SettingWindow::toggle()
+{
+    if(this->isVisible())
+    {
+        this->setVisible(false);
+    }
+    else
+    {
+        this->setVisible(true);
+    }
 }

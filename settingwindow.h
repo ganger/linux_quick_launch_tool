@@ -15,6 +15,7 @@
 #include"addwindow.h"
 #include"structs.h"
 #include<QList>
+#include<QxtGlobalShortcut>
 using namespace std;
 namespace Ui {
 class SettingWindow;
@@ -38,6 +39,7 @@ public slots:
     void quit();
     void setting();
     void fresh();
+    void toggle();
 private slots:
     void on_addButton_clicked();
     void on_okButton_clicked();
