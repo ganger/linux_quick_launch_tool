@@ -22,8 +22,8 @@ SettingWindow::SettingWindow(QWidget *parent) :
     qDebug()<<b;
     this->stIcon->show();
     this->fresh();
-    QxtGlobalShortcut * sc = new QxtGlobalShortcut(QKeySequence("Ctrl+Alt+S"), this);
-    connect(sc, SIGNAL(activated()),this, SLOT(toggle()));
+//    QxtGlobalShortcut * sc = new QxtGlobalShortcut(QKeySequence("Ctrl+Alt+S"), this);
+  //  connect(sc, SIGNAL(activated()),this, SLOT(toggle()));
 
 
   //  */

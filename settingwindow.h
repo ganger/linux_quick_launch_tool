@@ -15,7 +15,7 @@
 #include"addwindow.h"
 #include"structs.h"
 #include<QList>
-#include<QxtGlobalShortcut>
+//#include<QxtGlobalShortcut>
 using namespace std;
 namespace Ui {
 class SettingWindow;
