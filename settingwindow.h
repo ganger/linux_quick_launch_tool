@@ -35,6 +35,7 @@ private:
     QSystemTrayIcon *stIcon;
     QMenu *mainMenu;
     QStandardItemModel *listModel;
+    QList<struct_items> itemList;
 public slots:
     void quit();
     void setting();
@@ -44,6 +45,7 @@ private slots:
     void on_addButton_clicked();
     void on_okButton_clicked();
     void edit(QModelIndex index);
+    void on_removeButton_clicked();
 };
 
 #endif // SETTINGWINDOW_H

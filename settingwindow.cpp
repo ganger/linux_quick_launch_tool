@@ -7,7 +7,7 @@ SettingWindow::SettingWindow(QWidget *parent) :
     ui(new Ui::SettingWindow)
 {
     ui->setupUi(this);
-   this->stIcon=new QSystemTrayIcon;
+    this->stIcon=new QSystemTrayIcon;
     this->stIcon->setIcon(QIcon(":/SystemTrayIcon/QL.png"));
     this->stIcon->setToolTip("Linux Quick Lauch Tool");
     this->mainMenu=new QMenu((QWidget*)QApplication::desktop());
@@ -69,9 +69,11 @@ void SettingWindow::fresh()
     ifstream confFile;
     confFile.open("conf",ios::in);
     listModel=new QStandardItemModel;
+    itemList.clear();
     while(!confFile.eof())
     {
         string tmpstr;
+
         struct_items *item=new struct_items;
         confFile>>tmpstr;
         if("###"==tmpstr)
@@ -85,11 +87,11 @@ void SettingWindow::fresh()
         }
         if(item->path!="")
         {
+            itemList.append(*item);
             QStandardItem *itemview=new QStandardItem(QIcon(\
             QString::fromLocal8Bit(item->path.c_str())),QString::fromLocal8Bit(item->name.c_str()));
             itemview->setEditable(false);
             listModel->appendRow(itemview);
-            free(item);
             ui->listView->setModel(listModel);
         }
     }
@@ -97,6 +99,7 @@ void SettingWindow::fresh()
 
 void SettingWindow::on_okButton_clicked()
 {
+
     this->close();
 }
 
@@ -136,4 +139,23 @@ void SettingWindow::toggle()
     {
         this->setVisible(true);
     }
+}
+
+void SettingWindow::on_removeButton_clicked()
+{
+    int index=ui->listView->currentIndex().row();
+    itemList.removeAt(index);
+    listModel->removeRow(index);
+    ofstream outfile;
+    outfile.open("conf",ios::out);
+    int i;
+    for(i=0;i<itemList.length();i++)
+    {
+        outfile<<"###"<<endl;
+        outfile<<"[name] "<<itemList.at(i).name<<endl;
+        outfile<<"[command] "<<itemList.at(i).command<<endl;
+        outfile<<"[icon_path] "<<itemList.at(i).path<<endl;
+    }
+    outfile.close();
+
 }
