@@ -2,6 +2,7 @@
 #include "ui_settingwindow.h"
 #include<QDebug>
 #include<stdlib.h>
+#include<QDeclarativeView>
 SettingWindow::SettingWindow(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::SettingWindow)
@@ -22,11 +23,8 @@ SettingWindow::SettingWindow(QWidget *parent) :
     qDebug()<<b;
     this->stIcon->show();
     this->fresh();
-//    QxtGlobalShortcut * sc = new QxtGlobalShortcut(QKeySequence("Ctrl+Alt+S"), this);
-  //  connect(sc, SIGNAL(activated()),this, SLOT(toggle()));
-
-
-  //  */
+    QxtGlobalShortcut * sc = new QxtGlobalShortcut(QKeySequence("super+S"), this);
+    connect(sc, SIGNAL(activated()),this, SLOT(toggle()));
 
 }
 
@@ -131,14 +129,12 @@ void SettingWindow::edit(QModelIndex index)
 
 void SettingWindow::toggle()
 {
-    if(this->isVisible())
-    {
-        this->setVisible(false);
-    }
-    else
-    {
-        this->setVisible(true);
-    }
+    QDeclarativeView *qmlView = new QDeclarativeView;
+    qmlView->setSource(QUrl("./png/screen.qml"));
+    QWidget *widget =new QWidget();
+    QVBoxLayout *layout = new QVBoxLayout(widget);
+    layout->addWidget(qmlView);
+    widget->show();
 }
 
 void SettingWindow::on_removeButton_clicked()

@@ -17,6 +17,8 @@
 #include<QList>
 #include<QxtGlobalShortcut>
 #include<QVBoxLayout>
+#include<QDeclarativeComponent>
+#include<QDeclarativeView>
 using namespace std;
 namespace Ui {
 class SettingWindow;

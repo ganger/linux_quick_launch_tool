@@ -5,6 +5,7 @@
 #-------------------------------------------------
 
 QT       += core gui
+QT+=declarative
 CONFIG	+=qxt
 QXT	+= core gui
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
@@ -28,3 +29,6 @@ FORMS    += \
 
 RESOURCES += \
     png/png.qrc
+
+OTHER_FILES += \
+    png/screen.qml

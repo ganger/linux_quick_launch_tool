@@ -1,0 +1,8 @@
+<RCC>
+    <qresource prefix="/SystemTrayIcon">
+        <file>QL.png</file>
+    </qresource>
+    <qresource prefix="/qml">
+        <file>screen.qml</file>
+    </qresource>
+</RCC>
