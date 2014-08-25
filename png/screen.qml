@@ -1,6 +1,17 @@
 import QtQuick 1.1
 
-Rectangle {
-    width: 100
-    height: 62
+Image
+{
+    width: 1000
+    height: 800
+    source:"screen.jpg"
+    property string source1: png
+
+    Image
+    {
+        width:500
+        height:500
+        source: parent.source1
+    }
+
 }

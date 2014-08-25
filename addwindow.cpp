@@ -26,26 +26,37 @@ void AddWindow::on_selectButton_clicked()
 
 void AddWindow::on_okButton_clicked()
 {
-
-    if(ui->nameText->text().isEmpty()||ui->commandText->text().isEmpty()||ui->iconText->text().isEmpty())
+    QString keyText=ui->keyText->text();
+    if(keyText.length()==1&&((keyText[0]>47&&keyText[0]<58)||(keyText[0]>64&&keyText[0]<91)||(keyText[0]>96&&keyText[0]<123)))
     {
-        QMessageBox msgBox;
-        msgBox.setText("name command and icon cannot be null");
-        msgBox.exec();
-    }else
-    {
-        ofstream confFile;
-        confFile.open("conf",ios::app);
-        confFile<<"###"<<endl;
-        confFile<<"[name] "<<ui->nameText->text().toStdString()<<endl;
-        confFile<<"[command]  "<<ui->commandText->text().toStdString()<<endl;
-        confFile<<"[icon_path]    "<<ui->iconText->text().toStdString()<<endl;
-        confFile.close();
-        emit w_close();
-        this->close();
+        if(ui->nameText->text().isEmpty()||ui->commandText->text().isEmpty()||ui->iconText->text().isEmpty())
+        {
+            QMessageBox msgBox;
+            msgBox.setText("name command and icon cannot be null");
+            msgBox.exec();
+        }else
+        {
+            ofstream confFile;
+            confFile.open("conf",ios::app);
+            confFile<<"###"<<endl;
+            confFile<<"[name] "<<ui->nameText->text().toStdString()<<endl;
+            confFile<<"[command]  "<<ui->commandText->text().toStdString()<<endl;
+            confFile<<"[icon_path]    "<<ui->iconText->text().toStdString()<<endl;
+            confFile<<"[key]    "<<ui->keyText->text().toStdString()<<endl;
+            confFile.close();
+            emit w_close();
+            this->close();
+        }
 
     }
+    else
+    {
 
+        QMessageBox msgBox;
+        msgBox.setText("the length of hot key must be 1 and value must be 0-9 or a-z");
+        msgBox.exec();
+
+    }
 }
 
 void AddWindow::on_cancleButton_clicked()
@@ -62,4 +73,17 @@ void AddWindow::set_path(string path)
 {
 
     ui->iconText->setText(QString::fromLocal8Bit(path.c_str()));
+}
+
+
+void AddWindow::set_command(string command)
+{
+
+    ui->commandText->setText(QString::fromLocal8Bit(command.c_str()));
+}
+
+void AddWindow::set_key(string key)
+{
+
+    ui->keyText->setText(QString::fromLocal8Bit(key.c_str()));
 }

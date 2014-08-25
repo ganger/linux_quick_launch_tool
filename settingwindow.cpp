@@ -3,6 +3,9 @@
 #include<QDebug>
 #include<stdlib.h>
 #include<QDeclarativeView>
+#include <QDesktopWidget>
+#include <QRect>
+#include<QtGui>
 SettingWindow::SettingWindow(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::SettingWindow)
@@ -23,8 +26,16 @@ SettingWindow::SettingWindow(QWidget *parent) :
     qDebug()<<b;
     this->stIcon->show();
     this->fresh();
-    QxtGlobalShortcut * sc = new QxtGlobalShortcut(QKeySequence("super+S"), this);
-    connect(sc, SIGNAL(activated()),this, SLOT(toggle()));
+    //initial qml screen
+/*    this->QMLWidget=new QWidget();
+    this->qmlView = new QDeclarativeView;
+    this->qmlView->setSource(QUrl("./png/screen.qml"));
+    QVBoxLayout *layout = new QVBoxLayout(this->QMLWidget);
+    layout->addWidget(qmlView);
+    this->QMLWidget->setWindowFlags(Qt::FramelessWindowHint);
+    this->QMLWidget->setStyleSheet("background-color:black;");
+*/
+    //
 
 }
 
@@ -82,6 +93,8 @@ void SettingWindow::fresh()
             confFile>>item->command;
             confFile>>tmpstr;
             confFile>>item->path;
+            confFile>>tmpstr;
+            confFile>>item->key;
         }
         if(item->path!="")
         {
@@ -120,21 +133,34 @@ void SettingWindow::edit(QModelIndex index)
             confFile>>item->command;
             confFile>>tmpstr;
             confFile>>item->path;
+            confFile>>tmpstr;
+            confFile>>item->key;
         }
         itemlist.append(*item);
     }
-    AddWindow aw;
-    aw.set_name(itemlist.at(index.row()).name);
+    AddWindow *aw=new AddWindow;
+    aw->show();
+    aw->set_name(itemlist.at(index.row()).name);
+    aw->set_command(itemlist.at(index.row()).command);
+    aw->set_path(itemlist.at(index.row()).path);
+    aw->set_key(itemlist.at(index.row()).key);
+
 }
 
 void SettingWindow::toggle()
 {
-    QDeclarativeView *qmlView = new QDeclarativeView;
-    qmlView->setSource(QUrl("./png/screen.qml"));
-    QWidget *widget =new QWidget();
-    QVBoxLayout *layout = new QVBoxLayout(widget);
-    layout->addWidget(qmlView);
-    widget->show();
+    QDeclarativeContext *context = this->qmlView->rootContext();
+    context->setContextProperty("png","go.png");
+    if(this->QMLWidget->isVisible())
+       this->QMLWidget->hide();
+    else
+    {
+        this->QMLWidget->show();
+        this->QMLWidget->move ((QApplication::desktop()->width() -   this->QMLWidget->width())/4,\
+                               (QApplication::desktop()->height() -   this->QMLWidget->height())/2);
+
+//
+    }
 }
 
 void SettingWindow::on_removeButton_clicked()
@@ -154,4 +180,10 @@ void SettingWindow::on_removeButton_clicked()
     }
     outfile.close();
 
+}
+
+void SettingWindow::on_listView_doubleClicked(const QModelIndex &index)
+{
+    this->edit(index);
+    qDebug()<<"ccccccc";
 }
