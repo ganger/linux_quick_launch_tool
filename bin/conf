@@ -1,0 +1,5 @@
+###
+[name] firefox
+[command] firefox
+[icon_path] /home/ganger/project/linux_quick_launch_tool/bin/png/firefox.png
+[key] f
