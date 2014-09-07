@@ -25,7 +25,8 @@ confFile=open("conf","r")
 confList=cPickle.load(confFile)
 total=len(confList)
 confFile.close()
-
+import os
+backgroundPath=os.path.dirname(__file__)
 def create_qml():
 	qmlFile=open("screen.qml","w")
 	qmlFile.write("import QtQuick 2\n")
@@ -33,7 +34,7 @@ def create_qml():
 		'{\nid:background\n'+
 		'width: 1000\n'+
 		'height: 600\n'+
-		'source: "./png/screen.jpg"\n'
+		'source:"'+backgroundPath+'/png/screen.jpg"\n'+
 		'property int total:'+str(total)+'\n'+
 		'property int r:0\n'+
 		'Text\n'+

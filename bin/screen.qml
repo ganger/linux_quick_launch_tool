@@ -4,7 +4,7 @@ Image
 id:background
 width: 1000
 height: 600
-source: "./png/screen.jpg"
+source:"/home/ganger/project/linux_quick_launch_tool/bin/png/screen.jpg"
 property int total:1
 property int r:0
 Text

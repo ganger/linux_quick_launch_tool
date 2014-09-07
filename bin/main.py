@@ -56,6 +56,24 @@ def key2_press():
 	os.system(confList[1].command)
 def key3_press():
 	os.system(confList[2].command)
+def key4_press():
+	os.system(confList[3].command)
+def key5_press():
+	os.system(confList[4].command)
+def key6_press():
+	os.system(confList[5].command)
+def key7_press():
+	os.system(confList[6].command)
+def key8_press():
+	os.system(confList[7].command)
+def key9_press():
+	os.system(confList[8].command)
+def key10_press():
+	os.system(confList[9].command)
+def key11_press():
+	os.system(confList[10].command)
+def key12_press():
+	os.system(confList[11].command)
 def quit():
 	sys.exit(app.exec_())
 def setting():

@@ -30,6 +30,15 @@ class EventHandler(QObject):
     press_key1=pyqtSignal()
     press_key2=pyqtSignal()
     press_key3=pyqtSignal()
+    press_key4=pyqtSignal()
+    press_key5=pyqtSignal()
+    press_key6=pyqtSignal()
+    press_key7=pyqtSignal()
+    press_key8=pyqtSignal()
+    press_key9=pyqtSignal()
+    press_key10=pyqtSignal()
+    press_key11=pyqtSignal()
+    press_key12=pyqtSignal()
     show_window=pyqtSignal()
     close_window=pyqtSignal()
     def __init__(self):
@@ -61,6 +70,24 @@ class EventHandler(QObject):
 				self.press_key2.emit()
 		    elif int(l.order)==3:
 				self.press_key3.emit()
+		    elif int(l.order)==4:
+				self.press_key4.emit()
+		    elif int(l.order)==5:
+				self.press_key5.emit()
+		    elif int(l.order)==6:
+				self.press_key6.emit()
+		    elif int(l.order)==7:
+				self.press_key7.emit()
+		    elif int(l.order)==8:
+				self.press_key8.emit()
+		    elif int(l.order)==9:
+				self.press_key9.emit()
+		    elif int(l.order)==10:
+				self.press_key10.emit()
+		    elif int(l.order)==11:
+				self.press_key11.emit()
+		    elif int(l.order)==12:
+				self.press_key12.emit()
 			
 	elif event.type == X.KeyRelease:
             keyname = get_keyname(event)
