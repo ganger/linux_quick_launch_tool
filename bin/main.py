@@ -29,6 +29,7 @@ from PyQt5.QtQuick import QQuickView
 from read_conf import confList, create_qml
 from PyQt5 import Qt
 from tray_icon import TrayIcon
+from settingWindow import SettingWindow
 if __name__=="__main__":
 	app = QApplication(sys.argv)
 	signal.signal(signal.SIGINT, signal.SIG_DFL)
@@ -36,6 +37,7 @@ if __name__=="__main__":
 	view.setFlags(Qt.Qt.FramelessWindowHint)
 	create_qml()
 	t_icon=TrayIcon()
+	sw=SettingWindow()
 def show_window():
 	path='screen.qml'
 	view.engine().quit.connect(app.quit)
@@ -56,6 +58,12 @@ def key3_press():
 	os.system(confList[2].command)
 def quit():
 	sys.exit(app.exec_())
+def setting():
+	sw.show()
+	sw.finished.connect(setting_window_finish)
+def setting_window_finish():
+	create_qml()
+	print("ok")
 from record_event import RecordEvent
 from event_handler import EventHandler
 event_handler = EventHandler()
@@ -66,6 +74,7 @@ event_handler.press_key1.connect(key1_press)
 event_handler.press_key2.connect(key2_press)
 event_handler.press_key3.connect(key3_press)
 t_icon.quit.connect(quit)
+t_icon.settingSig.connect(setting)
 ##
 record_event = RecordEvent()
 record_event.capture_event.connect(event_handler.handle_event)

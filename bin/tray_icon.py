@@ -26,28 +26,21 @@ from PyQt5.QtWidgets import QApplication, qApp,QDialog
 import os
 class TrayIcon(QSystemTrayIcon):
 	quit=pyqtSignal()
+	settingSig=pyqtSignal()
 	def __init__(self):
 		super(TrayIcon,self).__init__()
-	#	stIcon=QSystemTrayIcon(self)
-		self.setIcon(QIcon("./png/firefox.png"))
+		self.setIcon(QIcon("./png/QL.png"))
 		self.setToolTip("Linux Quick Lauch Tool")
 		mainMenu=QMenu(QApplication.desktop())
 		quitAction=QAction("&Quit ",self,triggered=self.close_pro)
 		settingAction=QAction("setting",self,triggered=self.setting)
 		mainMenu.addAction(quitAction)
 		mainMenu.addAction(settingAction)
-#		connect(quitAction,SIGNAL(triggered()),this,SLOT(quit()))
-#		connect(settingAction,SIGNAL(triggered()),this,SLOT(setting()))
 		self.setContextMenu(mainMenu)
 		self.show()
 	def close_pro(self):
 		self.quit.emit()
 
 	def setting(self):
-		os.system("pwd")
-#import sys
-#if __name__=="__main__":
-#	app = QApplication(sys.argv)
-#	t_icon=TrayIcon
-#	sys.exit(app.exec_())
+		self.settingSig.emit()
 

@@ -25,9 +25,10 @@ from addWindow import AddWindow
 import cPickle
 
 class SettingWindow(QWidget):
-	on_addButtonClicked=pyqtSignal()
-	on_removeButtonClicked=pyqtSignal()
-	on_okButtonClicked=pyqtSignal()
+#	on_addButtonClicked=pyqtSignal()
+#	on_removeButtonClicked=pyqtSignal()
+#	on_okButtonClicked=pyqtSignal()
+	finished=pyqtSignal()
 	def __init__(self):
 		QWidget.__init__(self)
 		self.listview=QListView(self)
@@ -50,6 +51,7 @@ class SettingWindow(QWidget):
 
 		self.fresh()
 	def click_ok(self):
+		self.finished.emit()
 		self.close()
 	def click_add(self):
 		self.aw=AddWindow()

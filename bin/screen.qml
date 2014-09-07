@@ -35,7 +35,7 @@ width:50
 height:50
 x:parent.width/2-25+parent.r*Math.cos(degree)
 y:parent.height/2-25+parent.r*Math.sin(degree)
-source: "/home/ganger/project/linux_quick_launch_tool/bin/png/firefox.png"
+source: "/home/ganger/tmp/linux_quick_launch_tool/bin/png/firefox.png"
 property int n:0
 property double degree: 2*Math.PI*n/parent.total
 Rectangle

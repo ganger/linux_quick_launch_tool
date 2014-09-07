@@ -19,30 +19,10 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 from structs import d_struct
+import cPickle
 confFile=open("conf","r")
-count=1
-confList=[]
-order=1
-for line in confFile:
-	if count==2:
-		arr1=line.split(" ")
-		name=arr1[1]
-	elif count==3:
-		arr2=line.split(" ")
-		command=arr2[1]
-	elif count==4:
-		arr3=line.split(" ")
-		path=arr3[1]
-		path=path.split("\n")[0]
-	elif count==5:
-		arr4=line.split(" ")
-		key=arr4[1]
-		key=key.split("\n")[0]
-	count=count+1
-	if count>5:
-		count=1
-		confList.append(d_struct(order,name,path,command,key))
-		order=order+1
+
+confList=cPickle.load(confFile)
 total=len(confList)
 confFile.close()
 
