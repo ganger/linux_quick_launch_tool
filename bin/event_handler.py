@@ -68,25 +68,25 @@ class EventHandler(QObject):
 				self.press_key1.emit()
 		    elif int(l.order)==2 and self.superFlag==True:
 				self.press_key2.emit()
-		    elif int(l.order)==3:
+		    elif int(l.order)==3 and self.superFlag==True:
 				self.press_key3.emit()
-		    elif int(l.order)==4:
+		    elif int(l.order)==4 and self.superFlag==True:
 				self.press_key4.emit()
-		    elif int(l.order)==5:
+		    elif int(l.order)==5 and self.superFlag==True:
 				self.press_key5.emit()
-		    elif int(l.order)==6:
+		    elif int(l.order)==6 and self.superFlag==True:
 				self.press_key6.emit()
-		    elif int(l.order)==7:
+		    elif int(l.order)==7 and self.superFlag==True:
 				self.press_key7.emit()
-		    elif int(l.order)==8:
+		    elif int(l.order)==8 and self.superFlag==True:
 				self.press_key8.emit()
-		    elif int(l.order)==9:
+		    elif int(l.order)==9 and self.superFlag==True:
 				self.press_key9.emit()
-		    elif int(l.order)==10:
+		    elif int(l.order)==10 and self.superFlag==True:
 				self.press_key10.emit()
-		    elif int(l.order)==11:
+		    elif int(l.order)==11 and self.superFlag==True:
 				self.press_key11.emit()
-		    elif int(l.order)==12:
+		    elif int(l.order)==12 and self.superFlag==True:
 				self.press_key12.emit()
 			
 	elif event.type == X.KeyRelease:

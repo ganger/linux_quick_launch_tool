@@ -78,7 +78,7 @@ def create_qml():
 			'Text\n'+
 			'{\n'+
 			'anchors.centerIn: parent\n'+
-			'text:"'+confList[i].key+'"\n'+
+			'text:"'+confList[i].key.upper()+'"\n'+
 			'color: "white"\n'+
 			'font.pointSize: 40'+
 			'}\n'+
