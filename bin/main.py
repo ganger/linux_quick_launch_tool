@@ -22,6 +22,7 @@ import os
 import sys
 from Xlib import display
 import signal
+import cPickle
 from PyQt5 import QtCore
 from PyQt5.QtCore import QCoreApplication, QUrl
 from PyQt5.QtWidgets import QApplication, qApp
@@ -35,6 +36,7 @@ if __name__=="__main__":
 	signal.signal(signal.SIGINT, signal.SIG_DFL)
 	view = QQuickView()
 	view.setFlags(Qt.Qt.FramelessWindowHint)
+	view.setOpacity(0.9)
 	create_qml()
 	t_icon=TrayIcon()
 	sw=SettingWindow()
@@ -43,10 +45,10 @@ def show_window():
 	view.engine().quit.connect(app.quit)
 	view.setSource(QUrl(path))
 	desktop=QApplication.desktop()
-#	x=(desktop.width()-1000)/2
-	x=300#here x=300 because desktop.width may got wrong value due to the bug of qt
-	y=(desktop.height() - 600)/2
-	view.setGeometry(x, y,1000,600)
+	x=(desktop.width()-1000)/2
+#	x=300#here x=300 because desktop.width may got wrong value due to the bug of qt
+	y=(desktop.height() - 100)/2
+	view.setGeometry(x, y,1000,100)
 	view.show()
 def close_window():
 	view.hide()
@@ -70,10 +72,6 @@ def key9_press():
 	os.system(confList[8].command)
 def key10_press():
 	os.system(confList[9].command)
-def key11_press():
-	os.system(confList[10].command)
-def key12_press():
-	os.system(confList[11].command)
 def quit():
 	sys.exit(app.exec_())
 def setting():
@@ -81,7 +79,6 @@ def setting():
 	sw.finished.connect(setting_window_finish)
 def setting_window_finish():
 	create_qml()
-	print("ok")
 from record_event import RecordEvent
 from event_handler import EventHandler
 event_handler = EventHandler()
@@ -91,6 +88,13 @@ event_handler.close_window.connect(close_window)
 event_handler.press_key1.connect(key1_press)
 event_handler.press_key2.connect(key2_press)
 event_handler.press_key3.connect(key3_press)
+event_handler.press_key4.connect(key4_press)
+event_handler.press_key5.connect(key5_press)
+event_handler.press_key6.connect(key6_press)
+event_handler.press_key7.connect(key7_press)
+event_handler.press_key8.connect(key8_press)
+event_handler.press_key9.connect(key9_press)
+event_handler.press_key10.connect(key10_press)
 t_icon.quit.connect(quit)
 t_icon.settingSig.connect(setting)
 ##

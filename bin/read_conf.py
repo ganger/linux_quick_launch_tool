@@ -21,7 +21,6 @@
 from structs import d_struct
 import cPickle
 confFile=open("conf","r")
-
 confList=cPickle.load(confFile)
 total=len(confList)
 confFile.close()
@@ -30,57 +29,45 @@ backgroundPath=os.path.dirname(__file__)
 def create_qml():
 	qmlFile=open("screen.qml","w")
 	qmlFile.write("import QtQuick 2\n")
-	qmlFile.write('Image\n'+
+	qmlFile.write('Rectangle\n'+
 		'{\nid:background\n'+
 		'width: 1000\n'+
-		'height: 600\n'+
-		'source:"'+backgroundPath+'/png/screen.jpg"\n'+
+		'height: 100\n'+
+		'color:"#1c1703"\n'+
 		'property int total:'+str(total)+'\n'+
-		'property int r:0\n'+
-		'Text\n'+
-		'{\n'+
-		'text:"press super+key to start the program"\n'+
-		'anchors.centerIn: parent\n'+
-		'color:"white"\n'+
-		'font.pointSize: 15\n'+
-		'}\n'+
-		'Timer\n'+
-		'{\n'+
-		'id:timer\n'+
-		'interval: 10\n'+
-		'repeat: true\n'+
-		'running:true\n'+
-		'onTriggered:\n'+
-		'{\n'+
-		'background.r=background.r+10\n'+
-		'if(background.r>=250)\n'+
-		'{\n'+
-		'timer.stop()\n'+
-		'}\n'+
-		'}\n'+
-		'}\n')
+		'property int r:0\n')
 	i=0
 	while i<total:
 		qmlFile.write('Image\n'+
 			'{\n'+
-			'width:50\n'+
-			'height:50\n'+
-			'x:parent.width/2-25+parent.r*Math.cos(degree)\n'+
-			'y:parent.height/2-25+parent.r*Math.sin(degree)\n'+
+			'width:80\n'+
+			'height:80\n'+
+			'x:1000/parent.total/2+n*1000/parent.total-40\n'+
+			'y:10\n'+
 			'source: "'+confList[i].path+'"\n'+
 			'property int n:'+str(i)+'\n'+
-			'property double degree: 2*Math.PI*n/parent.total\n'+
 			'Rectangle\n'+
 			'{\n'+
-			'anchors.fill: parent\n'+
-			'opacity: 0.6\n'+
-			'color: "#000000"\n'+
+			'anchors.centerIn: parent\n'+
+			'width:30\n'+
+			'height:30\n'+
+			'color: "white"\n'+
+			'opacity:0.8\n'+
+			'radius:180\n'+
+			'Rectangle\n'+
+			'{\n'+
+			'anchors.centerIn:parent\n'+
+			'width:24\n'+
+			'height:24\n'+
+			'color:"black"\n'+
+			'radius:180\n'
 			'Text\n'+
 			'{\n'+
 			'anchors.centerIn: parent\n'+
 			'text:"'+confList[i].key.upper()+'"\n'+
 			'color: "white"\n'+
-			'font.pointSize: 40'+
+			'font.pointSize: 18'+
+			'}\n'+
 			'}\n'+
 			'}\n'+
 			'}\n')
