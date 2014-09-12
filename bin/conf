@@ -5,7 +5,7 @@ p2
 (dp3
 S'path'
 p4
-V/home/ganger/project/linux_quick_launch_tool/bin/png/freemind.png
+Vpng/freemind.png
 p5
 sS'command'
 p6
@@ -26,7 +26,7 @@ d_struct
 p12
 (dp13
 g4
-V/home/ganger/project/linux_quick_launch_tool/bin/png/fetion.png
+Vpng/fetion.png
 p14
 sg6
 Vopenfetion
@@ -43,7 +43,7 @@ d_struct
 p17
 (dp18
 g4
-V/home/ganger/project/linux_quick_launch_tool/bin/png/firefox.png
+Vpng/firefox.png
 p19
 sg6
 Vfirefox
@@ -60,7 +60,7 @@ d_struct
 p22
 (dp23
 g4
-V/home/ganger/project/linux_quick_launch_tool/bin/png/qt.png
+Vpng/qt.png
 p24
 sg6
 Vqtcreator
@@ -77,7 +77,7 @@ d_struct
 p27
 (dp28
 g4
-V/home/ganger/project/linux_quick_launch_tool/bin/png/eclipse.png
+Vpng/eclipse.png
 p29
 sg6
 Veclipse
@@ -94,7 +94,7 @@ d_struct
 p32
 (dp33
 g4
-V/home/ganger/project/linux_quick_launch_tool/bin/png/gimp.png
+Vpng/gimp.png
 p34
 sg6
 Vgimp
@@ -111,7 +111,7 @@ d_struct
 p37
 (dp38
 g4
-V/home/ganger/project/linux_quick_launch_tool/bin/png/chrome.png
+Vpng/chrome.png
 p39
 sg6
 Vchrome
@@ -128,7 +128,7 @@ d_struct
 p42
 (dp43
 g4
-V/home/ganger/project/linux_quick_launch_tool/bin/png/libreoffice.png
+Vpng/libreoffice.png
 p44
 sg6
 Vlibreoffice
@@ -145,7 +145,7 @@ d_struct
 p47
 (dp48
 g4
-V/home/ganger/project/linux_quick_launch_tool/bin/png/blender.png
+Vpng/blender.png
 p49
 sg6
 Vb

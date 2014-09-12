@@ -4,7 +4,8 @@ Rectangle
 id:background
 width: 1000
 height: 100
-color:"#1c1703"
+color: Qt.rgba(0, 0, 0, 0.6)
+radius: 6
 property int total:9
 property int r:0
 Image
@@ -13,7 +14,7 @@ width:80
 height:80
 x:1000/parent.total/2+n*1000/parent.total-40
 y:10
-source: "/home/ganger/project/linux_quick_launch_tool/bin/png/freemind.png"
+source: "png/freemind.png"
 property int n:0
 Rectangle
 {
@@ -45,7 +46,7 @@ width:80
 height:80
 x:1000/parent.total/2+n*1000/parent.total-40
 y:10
-source: "/home/ganger/project/linux_quick_launch_tool/bin/png/fetion.png"
+source: "png/fetion.png"
 property int n:1
 Rectangle
 {
@@ -77,7 +78,7 @@ width:80
 height:80
 x:1000/parent.total/2+n*1000/parent.total-40
 y:10
-source: "/home/ganger/project/linux_quick_launch_tool/bin/png/firefox.png"
+source: "png/firefox.png"
 property int n:2
 Rectangle
 {
@@ -109,7 +110,7 @@ width:80
 height:80
 x:1000/parent.total/2+n*1000/parent.total-40
 y:10
-source: "/home/ganger/project/linux_quick_launch_tool/bin/png/qt.png"
+source: "png/qt.png"
 property int n:3
 Rectangle
 {
@@ -141,7 +142,7 @@ width:80
 height:80
 x:1000/parent.total/2+n*1000/parent.total-40
 y:10
-source: "/home/ganger/project/linux_quick_launch_tool/bin/png/eclipse.png"
+source: "png/eclipse.png"
 property int n:4
 Rectangle
 {
@@ -173,7 +174,7 @@ width:80
 height:80
 x:1000/parent.total/2+n*1000/parent.total-40
 y:10
-source: "/home/ganger/project/linux_quick_launch_tool/bin/png/gimp.png"
+source: "png/gimp.png"
 property int n:5
 Rectangle
 {
@@ -205,7 +206,7 @@ width:80
 height:80
 x:1000/parent.total/2+n*1000/parent.total-40
 y:10
-source: "/home/ganger/project/linux_quick_launch_tool/bin/png/chrome.png"
+source: "png/chrome.png"
 property int n:6
 Rectangle
 {
@@ -237,7 +238,7 @@ width:80
 height:80
 x:1000/parent.total/2+n*1000/parent.total-40
 y:10
-source: "/home/ganger/project/linux_quick_launch_tool/bin/png/libreoffice.png"
+source: "png/libreoffice.png"
 property int n:7
 Rectangle
 {
@@ -269,7 +270,7 @@ width:80
 height:80
 x:1000/parent.total/2+n*1000/parent.total-40
 y:10
-source: "/home/ganger/project/linux_quick_launch_tool/bin/png/blender.png"
+source: "png/blender.png"
 property int n:8
 Rectangle
 {
